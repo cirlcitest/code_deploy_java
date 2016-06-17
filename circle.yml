@@ -1,7 +1,10 @@
 machine:
+  pre:
+  - date
+  - pwd
   java:
     version: oraclejdk8
-
+   
 
 #dependencies:
   # override:
