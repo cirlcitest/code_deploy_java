@@ -8,12 +8,7 @@
   <name>webservicetest Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+
     
     <dependency>
 	<groupId>org.glassfish.jersey.core</groupId>
@@ -310,6 +305,8 @@
 
 
 
+
+
         <plugin>
     <groupId>org.codehaus.mojo</groupId>
     <artifactId>properties-maven-plugin</artifactId>
@@ -367,6 +364,29 @@
 				    </execution>
 				  </executions>
 			</plugin>
-			</plugins>
+			
+			
+					
+	<plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-pdf-plugin</artifactId>
+		  <version>1.3</version>
+		  <executions>
+		    <execution>
+		      <id>pdf</id>
+		      <phase>site</phase>
+		      <goals>
+		        <goal>pdf</goal>
+		      </goals>
+		      <configuration>
+		        <outputDirectory>E:/Omnypay/project/OmnyPay_properties</outputDirectory>
+		        <includeReports>false</includeReports>
+		      </configuration>
+		    </execution>
+		  </executions>
+	</plugin>
+
+
+</plugins>
   </build>
 </project>
