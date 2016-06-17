@@ -3,7 +3,13 @@ machine:
     version: oraclejdk8
   
 
-dependencies:
-  override:
+#dependencies:
+ # override:
+ #   - mvn clean install
+	
+	
+test:
+ override:
     - mvn clean install
+ 
 
