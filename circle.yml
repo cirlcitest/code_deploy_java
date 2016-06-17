@@ -1,29 +1,9 @@
 machine:
   java:
     version: oraclejdk8
-  pre:
-    - git config --global user.name "CircleCI"
-    - git config --global user.email "circleci@omnypay.net"
-  post:
-    - sudo pip install --upgrade awscli
-  environment:
-    VERSION_FILE: $HOME/VERSION
-    DOCKER_REGISTRY: 976032964226.dkr.ecr.us-east-1.amazonaws.com
-    SERVICE_NAME: api-provisioning
-    TARGET_WAR_PATH: mobileApp/target/mobileApp.war
-  services:
-    - docker
+  
 
 dependencies:
   override:
     - mvn clean install
 
-deployment:
-  assets:
-    branch: master
-    commands:
-      # Get OmnyPay CI utils
-      - git clone https://${READ_BOT_TOKEN}@github.com/omnypay/omnypay-ci.git  ~/omnypay-ci --depth 1 --quiet
-
-      # Excecute commands for versioning and deploying assets and docker images
-      - ~/omnypay-ci/war-deployment $SERVICE_NAME $TARGET_WAR_PATH
