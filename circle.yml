@@ -11,5 +11,8 @@ machine:
     # -mvn clean install
 
 test:
+ pre: 
+ - pwd
  override:
     - mvn clean install
+ 
