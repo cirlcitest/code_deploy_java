@@ -13,6 +13,7 @@ machine:
 test:
  pre: 
  - pwd
+ - ls -l /home/ubuntu/test
  override:
     - mvn clean install
  
