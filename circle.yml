@@ -11,9 +11,14 @@ machine:
     # -mvn clean install
 
 test:
+ environment:
+    propfilepath: /home/ubuntu/test
  pre: 
+ 
  - pwd
  - ls -l /home/ubuntu/test
  override:
     - mvn clean install
+    - mvn integration-test
+ 
  

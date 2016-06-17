@@ -10,7 +10,12 @@ import junit.framework.Assert;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.*;
+import java.util.Properties;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -68,7 +73,7 @@ private static URI getBaseURI() {
 
 
 @Test
-public void registerUser(){
+public void registerUser() throws IOException{
 	
 	//String val = "{\"emailId\":\"sushd@gmail.com\",\"phoneNumber\":\"8904629976\", \"passCode\": \"Tarang@01\"}";
 	 
@@ -83,10 +88,15 @@ public void registerUser(){
 	  System.out.println("server response"+responseAsString);
     
     /*test for json validity*/
-    
+	  String path =  System.getProperty("propfilepath");
+			System.out.println("Integration test path is "+path);
+			Properties prop1 = new Properties();
+			InputStream is = new FileInputStream(path+"/cloud_cr3.properties");
+			prop1.load(is);
+			System.out.println(prop1.getProperty("jdbc.url"));
 	  Assert.assertEquals(responseAsString,"Got it!");
     
-      
+
 	
 }
 
