@@ -193,11 +193,11 @@
 			<artifactId>spring-web</artifactId>
 			<version>3.0.5.RELEASE</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.3.0</version>
-		</dependency>		
+		</dependency>		-->
 	<!-- <dependency>
 	<groupId>javax.servlet</groupId>
 	<artifactId>servlet-api</artifactId>
