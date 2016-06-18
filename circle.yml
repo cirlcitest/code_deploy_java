@@ -4,7 +4,8 @@ machine:
   - pwd
   java:
     version: oraclejdk8
-   
+  environment:
+    propfilepath: /home/ubuntu/test
 
 #dependencies:
   # override:
@@ -16,14 +17,15 @@ dependencies:
    
 
 test:
- environment:
-    propfilepath: /home/ubuntu/test
+
  pre: 
- 
+ - echo $CIRCLE_USERNAME
+ - echo $CIRCLE_REPOSITORY_URL
+ - echo $CIRCLE_BRANCH
  - pwd
  - ls -l /home/ubuntu/test
  override:
-    - mvn clean install -Dpropfilepath="/home/ubuntu/test/cloud_cr3.properties"
+    - mvn clean install -Dpropfilepath="/home/ubuntu/test"
     
  
  
