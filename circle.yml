@@ -9,6 +9,11 @@ machine:
 #dependencies:
   # override:
     # -mvn clean install
+    
+dependencies:
+  cache_directories:
+    - "assets/cache"    # relative to the build directory
+   
 
 test:
  environment:
@@ -18,7 +23,7 @@ test:
  - pwd
  - ls -l /home/ubuntu/test
  override:
-    - mvn clean install
-    - mvn integration-test
+    - mvn clean install -Dpropfilepath="/home/ubuntu/test/cloud_cr3.properties"
+    
  
  
