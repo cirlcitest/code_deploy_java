@@ -11,9 +11,11 @@ machine:
   # override:
     # -mvn clean install
     
-dependencies:
+de1pendencies:
+  pre:
+     -mkdir -r assets/cache
   cache_directories:
-    - "assets/cache"    # relative to the build directory
+      - "assets/cache"    # relative to the build directory
    
 
 test:
@@ -22,10 +24,16 @@ test:
  - echo $CIRCLE_USERNAME
  - echo $CIRCLE_REPOSITORY_URL
  - echo $CIRCLE_BRANCH
+ - echo $CIRCLE_TEST_REPORTS
  - pwd
  - ls -l /home/ubuntu/test
  override:
-    - mvn clean install -Dpropfilepath="/home/ubuntu/test"
+    #- mvn clean install -Dpropfilepath="/home/ubuntu/test" it is hardcoding...
+    - mvn clean install -Dpropfilepath=$pwd
     
+ post:
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+
  
  
