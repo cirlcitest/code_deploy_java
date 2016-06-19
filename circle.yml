@@ -29,7 +29,7 @@ test:
  - ls -l /home/ubuntu/test
  override:
     #- mvn clean install -Dpropfilepath="/home/ubuntu/test" it is hardcoding...
-    - mvn clean install -Dpropfilepath=$CIRCLE_REPOSITORY_URL
+    - mvn clean install -Dpropfilepath=$HOME/CIRCLE_PROJECT_REPONAME
     
  post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
