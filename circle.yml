@@ -11,7 +11,7 @@ machine:
   # override:
     # -mvn clean install
     
-de1pendencies:
+dependencies:
   pre:
      -mkdir -r assets/cache
   cache_directories:
@@ -34,6 +34,7 @@ test:
  post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - ls -l $CIRCLE_TEST_REPORTS/junit/
 
  
  
