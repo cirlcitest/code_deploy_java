@@ -13,7 +13,7 @@ machine:
     
 dependencies:
   pre:
-     - mkdir -r assets/cache
+     - mkdir -p assets/cache
   cache_directories:
       - "assets/cache"    # relative to the build directory
    
