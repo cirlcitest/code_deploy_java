@@ -24,7 +24,8 @@ database:
     - createuser -s -d testuser
     - createdb testdb
     #- GRANT ALL PRIVILEGES ON DATABASE testdb to tom;
-    - psql testdb1 < /home/ubuntu/test/back.sql
+    - psql testdb < /home/ubuntu/test/back.sql
+    - select * from company;
 
 test:
 
