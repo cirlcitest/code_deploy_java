@@ -20,6 +20,7 @@ dependencies:
    
 database:
   override:
+    - psql
     - CREATE USER tom WITH PASSWORD 'tommy';
     - createdb testdb
     - GRANT ALL PRIVILEGES ON DATABASE testdb to tom;
