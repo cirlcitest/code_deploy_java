@@ -6,7 +6,8 @@ machine:
     version: oraclejdk8
   environment:
     propfilepath: /home/ubuntu/test
-
+  services:
+    - postgresql
 #dependencies:
   # override:
     # -mvn clean install
@@ -17,6 +18,12 @@ dependencies:
   cache_directories:
       - "assets/cache"    # relative to the build directory
    
+database:
+  override:
+    - CREATE USER tom WITH PASSWORD 'tommy';
+    - createdb testdb
+    - GRANT ALL PRIVILEGES ON DATABASE testdb to tom;
+    - psql testdb1 < /home/ubuntu/test/back.sql
 
 test:
 
