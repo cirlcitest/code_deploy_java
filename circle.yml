@@ -26,8 +26,8 @@ database:
    - ls -a $HOME
   override:
     #- CREATE USER tom WITH PASSWORD 'tommy';
-    #- createuser -s -d testuser
-    - CREATE USER tom WITH PASSWORD 'tommy';
+    - createuser -s -d testuser
+    #- CREATE USER tom WITH PASSWORD 'tommy';
     - createdb testdb
     #- GRANT ALL PRIVILEGES ON DATABASE testdb to tom;
     - psql testdb < /home/ubuntu/test/back.sql
