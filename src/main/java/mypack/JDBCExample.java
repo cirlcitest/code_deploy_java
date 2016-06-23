@@ -34,7 +34,9 @@ public class JDBCExample {
 			String nm = s.getName();
 			int age = s.getAge();
 			int roll = s.getRoll();
-			int record = st.executeUpdate("insert into Student (name,age,roll) values ("+nm+","+age+","+roll+")");
+			String query =  "insert into Student (name,age,roll) values ('"+nm+"',"+age+","+roll+")";
+			System.out.println("query is "+query);
+			int record = st.executeUpdate(query);
 			if(record > 0)
 				System.out.println("Records inserted");
 
