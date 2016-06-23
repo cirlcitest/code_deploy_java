@@ -19,8 +19,7 @@ dependencies:
       - "assets/cache"    # relative to the build directory
    
 database:
-  pre:
-  override:
+   override:
     #- CREATE USER tom WITH PASSWORD 'tommy';
     - createuser -s -d testuser
     #- CREATE USER tom WITH PASSWORD 'tommy';
