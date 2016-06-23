@@ -6,6 +6,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import junit.framework.Assert;
+import org.junit.runners.MethodSorters;
 import mypack.JDBCExample;
 
 import org.springframework.context.ApplicationContext;
@@ -35,6 +36,7 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;*/
 import org.junit.After;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.glassfish.jersey.client.ClientConfig;
@@ -42,6 +44,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 @Category(IntegrationTest.class)//this is availbale in junit 4.12 not in 4.2
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 /* all the integration test cases classes should start from IntegrationTest*/
 
 public class IntegrationTestChild implements IntegrationTest{
@@ -72,10 +75,10 @@ private static URI getBaseURI() {
 
 
 
-
+/*unit tests are never performed in order */
 @Test
-public void addStudent() throws Exception{
-	
+public void test() throws Exception{
+		  System.out.println("-------------------Running First Test--------------------------");
 		  String student = "{\"name\":\"Arup\",\"roll\":\"12\",\"age\":\"22\"}";
 		  Entity entity = Entity.entity(student, MediaType.APPLICATION_JSON_TYPE);
 		  Response response = target.path("/myresource").path("addStudent").request().accept(MediaType.APPLICATION_JSON).post(entity);
@@ -86,25 +89,29 @@ public void addStudent() throws Exception{
 		  System.out.println("server response"+responseAsString);
 		  System.out.println("-----------------All Records -------------------");
 		  JDBCExample.displayAll();
+		  
+		  System.out.println("-------------------Running Second Test--------------------------");
+		  Response response1 = target.path("/myresource").path("getStudent/12").request().accept(MediaType.TEXT_PLAIN).get();
+		  System.out.println("see the response value"+response1);
+		  System.out.println(target.getUri());
+		  String responseAsString1 = response1.readEntity(String.class);
+		  Assert.assertEquals(200, response1.getStatus());
+		  System.out.println(">>>>>>>>>>>>>>>>>>>>>>server response"+responseAsString);
+		  Assert.assertEquals("Arup",responseAsString1);
+		  
 
 }
 
-
+/*
 @Test
 public void getName() throws Exception{
 	
 		
 		
-		  Response response = target.path("/myresource").path("getStudent/12").request().accept(MediaType.TEXT_PLAIN).get();
-		  System.out.println("see the response value"+response);
-		  System.out.println(target.getUri());
-		  String responseAsString = response.readEntity(String.class);
-		  Assert.assertEquals(200, response.getStatus());
-		  System.out.println(">>>>>>>>>>>>>>>>>>>>>>server response"+responseAsString);
-		  Assert.assertEquals("Arup",responseAsString);
+
 
 }
-
+*/
 public boolean isJSONValid(String test) {
     try {
         new JSONObject(test);
