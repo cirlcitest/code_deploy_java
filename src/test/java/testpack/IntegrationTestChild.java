@@ -96,8 +96,8 @@ public void test() throws Exception{
 		  System.out.println(target.getUri());
 		  String responseAsString1 = response1.readEntity(String.class);
 		  Assert.assertEquals(200, response1.getStatus());
-		  System.out.println(">>>>>>>>>>>>>>>>>>>>>>server response"+responseAsString);
-		  Assert.assertEquals("Arup",responseAsString1);
+		  System.out.println(">>>>>>>>>>>>>>>>>>>>>>server response"+responseAsString1);
+		  Assert.assertEquals("Arup",responseAsString1.trim());
 		  
 
 }
