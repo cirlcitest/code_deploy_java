@@ -2,9 +2,10 @@ package mypack;
 import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Student {
-	String type;
+
 	String name;
 	int age;
+	int roll;
 	public String getName() {
 		return name;
 	}
@@ -17,11 +18,18 @@ public class Student {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public String getType() {
-		return type;
+
+	public int getRoll() {
+		return roll;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setRoll(int roll) {
+		this.roll = roll;
+	}
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", age=" + age + ", roll=" + roll + ", getName()=" + getName() + ", getAge()="
+				+ getAge() + ", getRoll()=" + getRoll() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
 	}
 	
 	

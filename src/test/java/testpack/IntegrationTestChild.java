@@ -73,30 +73,34 @@ private static URI getBaseURI() {
 
 
 @Test
-public void registerUser() throws Exception{
+public void addStudent() throws Exception{
 	
-	
-	  Response response = target.path("/myresource").request().accept(MediaType.TEXT_PLAIN_TYPE).get();
-	  System.out.println("see the response value"+response);
-	  System.out.println(target.getUri());
-	  String responseAsString = response.readEntity(String.class);
-	  Assert.assertEquals(200, response.getStatus());
-	  System.out.println("server response"+responseAsString);
-    
-    /*test for json validity*/
-	        String path =  System.getProperty("propfilepath");
-			System.out.println("Integration test path is "+path);
-			Properties prop1 = new Properties();
-			InputStream is = new FileInputStream(path+"/cloud_cr3.properties");
-			prop1.load(is);
-			System.out.println(prop1.getProperty("jdbc.url"));
-	        Assert.assertEquals(responseAsString,"Got it!");
-	        System.out.println("+++++++++++++++++++++"+JDBCExample.getData(123));
-    
+		  String student = "{\"name\":\"Arup\",\"roll\":\"12\",\"age\":\"22\"}";
+		  Entity entity = Entity.entity(student, MediaType.APPLICATION_JSON_TYPE);
+		  Response response = target.path("/myresource").path("addStudent").request().accept(MediaType.APPLICATION_JSON).post(entity);
+		  System.out.println("see the response value"+response);
+		  System.out.println(target.getUri());
+		  String responseAsString = response.readEntity(String.class);
+		  Assert.assertEquals(200, response.getStatus());
+		  System.out.println("server response"+responseAsString);
 
-	
 }
 
+
+@Test
+public void getName() throws Exception{
+	
+		
+		
+		  Response response = target.path("/myresource").path("getStudent/12").request().accept(MediaType.TEXT_PLAIN).get();
+		  System.out.println("see the response value"+response);
+		  System.out.println(target.getUri());
+		  String responseAsString = response.readEntity(String.class);
+		  Assert.assertEquals(200, response.getStatus());
+		  System.out.println("server response"+responseAsString);
+		  Assert.assertEquals(responseAsString,"Arup");
+
+}
 
 public boolean isJSONValid(String test) {
     try {

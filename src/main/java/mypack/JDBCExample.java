@@ -7,22 +7,73 @@ import java.sql.*;
 
 public class JDBCExample {
 	
-	public static String getData(int id) throws Exception{
+	static {
+		
+		try {
+			DriverManager.registerDriver(new org.postgresql.Driver());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public static String saveStudent(Student s){
 		String name = null;
 		System.out.println("-------- PostgreSQL "
 				+ "JDBC Connection Testing ------------");
+		Connection connection = null;
 		try {
 
-			DriverManager.registerDriver(new org.postgresql.Driver());
+			
+          
+			connection = DriverManager.getConnection(
+					"jdbc:postgresql://127.0.0.1:5432/testdb", "testuser","");
+			Statement st = connection.createStatement();
+			String nm = s.getName();
+			int age = s.getAge();
+			int roll = s.getRoll();
+			int record = st.executeUpdate("insert into Student values ("+nm+","+age+","+roll+")");
+			if(record > 0)
+				System.out.println("Records inserted");
+
+		} catch (SQLException e) {
+
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+			return null;
+
+		}
+		finally{
+			
+			try{
+				
+				connection.close();
+			}
+			catch(Exception e){}
+		}
+
+		
+		
+		return name;
+	}
+	
+	public static String  getStudent(int roll){
+		
+		String name = null;
+	try {
+
+			
            	Connection connection = null;
 			connection = DriverManager.getConnection(
 					"jdbc:postgresql://127.0.0.1:5432/testdb", "testuser","");
 			Statement st = connection.createStatement();
-			ResultSet rs = st.executeQuery("select * from company");
+			ResultSet rs = st.executeQuery("select * from Student where roll="+roll);
 			if(rs.next()){
 
-			String val = rs.getString("name");
-			System.out.println("some value"+val);
+			name = rs.getString("name");
+			System.out.println("name of student is"+name);
 
 
 			}		
@@ -43,3 +94,5 @@ public class JDBCExample {
 		
 		
 	}
+		
+	
