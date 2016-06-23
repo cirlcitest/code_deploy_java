@@ -20,12 +20,12 @@ dependencies:
    
 database:
    override:
-    #- creates a super user (-s) who can create database (-d);
+    #- CREATE USER tom WITH PASSWORD 'tommy';
     - createuser -s -d testuser
-    #- create a database
+    #- CREATE USER tom WITH PASSWORD 'tommy';
     - createdb testdb
+    #- GRANT ALL PRIVILEGES ON DATABASE testdb to tom;
     - psql testdb < /home/ubuntu/test/back.sql
-    # below prints the records present in the db
     - psql -U testuser  testdb  -w -f $HOME/$CIRCLE_PROJECT_REPONAME/sqlrun.txt > output
     - cat output
   
@@ -44,7 +44,10 @@ test:
     #- mvn clean install -Dpropfilepath="/home/ubuntu/test" it is hardcoding...
     - mvn clean install -Dpropfilepath=$HOME/$CIRCLE_PROJECT_REPONAME
     
-
+ post:
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - ls -l $CIRCLE_TEST_REPORTS/junit/
 
  
  
