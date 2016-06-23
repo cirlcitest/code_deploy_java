@@ -21,9 +21,9 @@ dependencies:
 database:
 
   pre:
-   - cp .pgpass  $HOME/$CIRCLE_PROJECT_REPONAME/
-   - cp  sqlrun.txt $HOME/$CIRCLE_PROJECT_REPONAME/
-   - ls -a $HOME/$CIRCLE_PROJECT_REPONAME
+   - cp .pgpass  $HOME
+   - cp  sqlrun.txt $HOME
+   - ls -a $HOME
   override:
     #- CREATE USER tom WITH PASSWORD 'tommy';
     #- createuser -s -d testuser
