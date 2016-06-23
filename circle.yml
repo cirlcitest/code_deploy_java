@@ -27,6 +27,7 @@ database:
     #- GRANT ALL PRIVILEGES ON DATABASE testdb to tom;
     - psql testdb < /home/ubuntu/test/back.sql
     - psql -U testuser  testdb  -w -f $HOME/$CIRCLE_PROJECT_REPONAME/sqlrun.txt > output
+    - cat output
   
 
 
