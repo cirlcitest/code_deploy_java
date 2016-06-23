@@ -6,6 +6,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import junit.framework.Assert;
+import mypack.JDBCExample;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -83,6 +84,8 @@ public void addStudent() throws Exception{
 		  String responseAsString = response.readEntity(String.class);
 		  Assert.assertEquals(200, response.getStatus());
 		  System.out.println("server response"+responseAsString);
+		  System.out.println("-----------------All Records -------------------");
+		  JDBCExample.displayAll();
 
 }
 

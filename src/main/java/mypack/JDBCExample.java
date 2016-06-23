@@ -34,13 +34,13 @@ public class JDBCExample {
 			String nm = s.getName();
 			int age = s.getAge();
 			int roll = s.getRoll();
-			int record = st.executeUpdate("insert into Student values ("+nm+","+age+","+roll+")");
+			int record = st.executeUpdate("insert into Student (name,age,roll) values ("+nm+","+age+","+roll+")");
 			if(record > 0)
 				System.out.println("Records inserted");
 
 		} catch (SQLException e) {
 
-			System.out.println("Connection Failed! Check output console");
+			System.out.println("Exception occured while storing student details");
 			e.printStackTrace();
 			return null;
 
@@ -92,7 +92,43 @@ public class JDBCExample {
 		return name;
 	}
 		
+	public static void displayAll(){
 		
+	try {
+
+			
+           	Connection connection = null;
+			connection = DriverManager.getConnection(
+					"jdbc:postgresql://127.0.0.1:5432/testdb", "testuser","");
+			Statement st = connection.createStatement();
+			ResultSet rs = st.executeQuery("select * from Student");
+			while(rs.next()){
+
+			String name = rs.getString("name");
+			String roll = rs.getString("roll");
+			String age =  rs.getString("age");
+			
+			System.out.println("Name"+name+"roll"+roll+"Age"+age);
+
+			}		
+		
+
+		} catch (SQLException e) {
+
+			System.out.println("Exception....");
+			e.printStackTrace();
+		
+
+		}
+
+		
+		
+
 	}
+		
+	}	
+	
+	
+	
 		
 	

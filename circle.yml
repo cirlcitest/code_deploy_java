@@ -43,9 +43,7 @@ test:
  override:
     #- mvn clean install -Dpropfilepath="/home/ubuntu/test" it is hardcoding...
     - mvn clean install -Dpropfilepath=$HOME/$CIRCLE_PROJECT_REPONAME
-post:
-    - psql -U testuser  testdb  -w -f $HOME/$CIRCLE_PROJECT_REPONAME/sqlrun.txt > output
-    - cat output
+
     
 
 
