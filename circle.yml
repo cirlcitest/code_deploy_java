@@ -19,11 +19,7 @@ dependencies:
       - "assets/cache"    # relative to the build directory
    
 database:
-
   pre:
-   #- cp .pgpass  $HOME
-   #- cp  sqlrun.txt $HOME
-    - ls -a $HOME
   override:
     #- CREATE USER tom WITH PASSWORD 'tommy';
     - createuser -s -d testuser
