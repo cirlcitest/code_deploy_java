@@ -73,13 +73,9 @@ private static URI getBaseURI() {
 
 
 @Test
-public void registerUser() throws IOException{
+public void registerUser() throws Exception{
 	
-	//String val = "{\"emailId\":\"sushd@gmail.com\",\"phoneNumber\":\"8904629976\", \"passCode\": \"Tarang@01\"}";
-	 
-	//  Entity en = Entity.entity(val, MediaType.APPLICATION_JSON);
-
-	// Response response = target.path("user").request(MediaType.APPLICATION_JSON).header("api-key","1upqbzm8zgi80rwuc9n34vsofsis3vs-").accept(MediaType.APPLICATION_JSON).post(en);
+	
 	  Response response = target.path("/myresource").request().accept(MediaType.TEXT_PLAIN_TYPE).get();
 	  System.out.println("see the response value"+response);
 	  System.out.println(target.getUri());
@@ -88,13 +84,14 @@ public void registerUser() throws IOException{
 	  System.out.println("server response"+responseAsString);
     
     /*test for json validity*/
-	  String path =  System.getProperty("propfilepath");
+	        String path =  System.getProperty("propfilepath");
 			System.out.println("Integration test path is "+path);
 			Properties prop1 = new Properties();
 			InputStream is = new FileInputStream(path+"/cloud_cr3.properties");
 			prop1.load(is);
 			System.out.println(prop1.getProperty("jdbc.url"));
-	  Assert.assertEquals(responseAsString,"Got it!");
+	        Assert.assertEquals(responseAsString,"Got it!");
+	        System.out.println("+++++++++++++++++++++"+JDBCExample.getData(123));
     
 
 	
@@ -117,3 +114,9 @@ public boolean isJSONValid(String test) {
 
 
 }
+
+//String val = "{\"emailId\":\"sushd@gmail.com\",\"phoneNumber\":\"8904629976\", \"passCode\": \"Tarang@01\"}";
+
+	//  Entity en = Entity.entity(val, MediaType.APPLICATION_JSON);
+
+	// Response response = target.path("user").request(MediaType.APPLICATION_JSON).header("api-key","1upqbzm8zgi80rwuc9n34vsofsis3vs-").accept(MediaType.APPLICATION_JSON).post(en);
