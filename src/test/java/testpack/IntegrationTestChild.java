@@ -100,8 +100,8 @@ public void getName() throws Exception{
 		  System.out.println(target.getUri());
 		  String responseAsString = response.readEntity(String.class);
 		  Assert.assertEquals(200, response.getStatus());
-		  System.out.println("server response"+responseAsString);
-		  Assert.assertEquals(responseAsString,"Arup");
+		  System.out.println(">>>>>>>>>>>>>>>>>>>>>>server response"+responseAsString);
+		  Assert.assertEquals("Arup",responseAsString);
 
 }
 
