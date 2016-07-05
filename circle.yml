@@ -44,7 +44,21 @@ test:
     #- mvn clean install -Dpropfilepath="/home/ubuntu/test" it is hardcoding...
     - mvn clean install -Dpropfilepath=$HOME/$CIRCLE_PROJECT_REPONAME
 
-    
+  
+
+deployment:
+  staging:
+    branch: master
+    codedeploy:
+      code_deploy_java:
+        application_root: /
+        region: us-west-2
+        revision_location:
+          revision_type: S3
+          s3_location:
+            bucket: amazonbuckettest
+            key_pattern: circleci-demo-app-master-firstcommit
+        deployment_group: circleci-demo-dg
 
 
  
