@@ -5,7 +5,7 @@ machine:
   java:
     version: oraclejdk8
   environment:
-    propfilepath: /home/ubuntu/test
+    propfilepath: /home/ubuntu/code_deploy_java
   services:
     - postgresql
 #dependencies:
@@ -24,7 +24,7 @@ database:
     - createuser -s -d testuser
     #- create a database
     - createdb testdb
-    - psql testdb < /home/ubuntu/test/back.sql
+    - psql testdb < /home/ubuntu/code_deploy_java/back.sql
     # below prints the records present in the db
     - psql -U testuser  testdb  -w -f $HOME/$CIRCLE_PROJECT_REPONAME/sqlrun.txt > output
     - cat output
@@ -39,7 +39,7 @@ test:
  - echo $CIRCLE_BRANCH
  - echo $CIRCLE_TEST_REPORTS
  - pwd
- - ls -l /home/ubuntu/test
+
  override:
     #- mvn clean install -Dpropfilepath="/home/ubuntu/test" it is hardcoding...
     - mvn clean install -Dpropfilepath=$HOME/$CIRCLE_PROJECT_REPONAME
